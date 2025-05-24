@@ -1,12 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import axios from "../../utils/axios"
+
 
 const Topnav = () => {
   const [query, setQuery] = useState("");
   console.log(query);
 
+  const GetSerches= async() =>{
+    try{
+      const d= await axios.get(`tv/1369/external_ids?query=${query}`)
+      console.log(d);
+    } catch(error){
+      console.log("error: ", error);
+    }
+  };
+
+  useEffect(()=>{
+    GetSerches();
+  }, [query]);
+
   return (
-    <div className="w-full h-[10vh] relative flex justify-center items-center">
+    <div className="w-full h-[10vh] relative flex justify-start items-center ml-[15%]">
       <i className="text-3xl text-zinc-400 ri-search-line"></i>
       <input
         onChange={(e) => setQuery(e.target.value)}
@@ -24,34 +39,11 @@ const Topnav = () => {
       )}
 
       <div className="w-[50%] max-h-[50vh] bg-zinc-200 absolute top-[90%] overflow-auto rounded">
-        <Link className="text-zinc-600 w-[100%] p-10 flex justify-start items-center border-b-2 border-zinc-100 font-semibold hover:text-black hover:bg-zinc-300 duration-300">
+        {/*<Link className="text-zinc-600 w-[100%] p-10 flex justify-start items-center border-b-2 border-zinc-100 font-semibold hover:text-black hover:bg-zinc-300 duration-300">
           <img src="" alt="" />
           <span>Hello</span>
-        </Link>
-        <Link className="text-zinc-600 w-[100%] p-10 flex justify-start items-center border-b-2 border-zinc-100 font-semibold hover:text-black hover:bg-zinc-300 duration-300">
-          <img src="" alt="" />
-          <span>Hello</span>
-        </Link>
-        <Link className="text-zinc-600 w-[100%] p-10 flex justify-start items-center border-b-2 border-zinc-100 font-semibold hover:text-black hover:bg-zinc-300 duration-300">
-          <img src="" alt="" />
-          <span>Hello</span>
-        </Link>
-        <Link className="text-zinc-600 w-[100%] p-10 flex justify-start items-center border-b-2 border-zinc-100 font-semibold hover:text-black hover:bg-zinc-300 duration-300">
-          <img src="" alt="" />
-          <span>Hello</span>
-        </Link>
-        <Link className="text-zinc-600 w-[100%] p-10 flex justify-start items-center border-b-2 border-zinc-100 font-semibold hover:text-black hover:bg-zinc-300 duration-300">
-          <img src="" alt="" />
-          <span>Hello</span>
-        </Link>
-        <Link className="text-zinc-600 w-[100%] p-10 flex justify-start items-center border-b-2 border-zinc-100 font-semibold hover:text-black hover:bg-zinc-300 duration-300">
-          <img src="" alt="" />
-          <span>Hello</span>
-        </Link>
-        <Link className="text-zinc-600 w-[100%] p-10 flex justify-start items-center border-b-2 border-zinc-100 font-semibold hover:text-black hover:bg-zinc-300 duration-300">
-          <img src="" alt="" />
-          <span>Hello</span>
-        </Link>
+        </Link>*/}
+       
       </div>
     </div>
   );
