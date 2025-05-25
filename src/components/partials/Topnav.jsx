@@ -6,10 +6,11 @@ import axios from "../../utils/axios"
 const Topnav = () => {
   const [query, setQuery] = useState("");
   console.log(query);
+  const [searches, setSearches]= useState(null);
 
   const GetSerches= async() =>{
     try{
-      const d= await axios.get(`tv/1369/external_ids?query=${query}`)
+      const d= await axios.get(`movie/{movie_id}?query=${query}`)
       console.log(d);
     } catch(error){
       console.log("error: ", error);
