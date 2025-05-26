@@ -3,10 +3,13 @@ import Sidenav from "./partials/Sidenav";
 import Topnav from "./partials/Topnav";
 import axios from "../utils/axios";
 import Header from "./partials/Header";
+import HorizontalCards from "./partials/HorizontalCards";
 
 const Home = () => {
 
   const [wallpaper, setWallpaper] = useState([]);
+  const [trending, setTrending] = useState([]);
+
   const GetHeaderWallpaper = async () => {
     try {
       const { data } = await axios.get(`/trending/all/day`);
@@ -20,16 +23,29 @@ const Home = () => {
     }
   };
 
+    const GetTrending = async () => {
+    try {
+      const { data } = await axios.get(`/trending/all/day`);
+      setTrending(data.results);
+      
+      
+    } catch (error) {
+      console.log("error: ", error);
+    }
+  };
+
 useEffect(() => {
   GetHeaderWallpaper();
-}, []); //if there is no wallpaper then call the function and get a wallpaper.
+  GetTrending();
+}, []);
 
-  return wallpaper ? ( 
+  return wallpaper && trending ? ( 
     <>
       <Sidenav></Sidenav>
-      <div className='w-[80%] h-full'>
+      <div className='w-[80%] h-full overflow-x-hidden overflow-auto'>
         <Topnav></Topnav>
         <Header data={wallpaper}></Header>
+        <HorizontalCards data={trending} ></HorizontalCards>
       </div>
     </>
   ): <h1>Loading</h1>

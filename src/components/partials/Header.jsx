@@ -13,7 +13,7 @@ const Header = ({ data }) => {
         backgroundSize: "cover", // Ensures the image covers the entire div
         backgroundRepeat: "no-repeat",
       }}
-      className="w-full h-[50vh] flex flex-col p-[10%] justify-end items-start"
+      className="w-full h-[50vh] flex flex-col p-[5%] justify-end items-start"
     >
       <h1 className="text-5xl font-black text-white">
         {data.original_title || data.title || data.original_name}
@@ -26,21 +26,21 @@ const Header = ({ data }) => {
       )}
       <p className="text-white">
         {data.release_date && (
-          <span>
+          <>
             <i className="text-yellow-500 ri-megaphone-fill"></i>{" "}
             {data.release_date}
-          </span>
+          </>
         )}
         {data.media_type && (
-          <span>
+          <>
             {" "}
             <i className="text-yellow-500 ri-album-fill"></i>{" "}
             {data.media_type.toUpperCase()}{" "}
-          </span>
+          </>
         )}
       </p>
 
-      <Link className="p-4 text-white rounded bg-[#6556cd]">Watch Trailer</Link>
+      <Link className="p-4 text-white rounded bg-[#6556cd] mt-5">Watch Trailer</Link>
     </div>
   );
 };
