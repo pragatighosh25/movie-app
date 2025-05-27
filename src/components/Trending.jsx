@@ -14,6 +14,7 @@ const Trending = () => {
   const [trending, setTrending] = useState([]);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
+  document.title ="SCSDB | Trending " + category.toUpperCase();
 
   const GetTrending = async () => {
     try {
@@ -54,7 +55,7 @@ const Trending = () => {
           <i
             onClick={() => navigate(-1)}
             className="hover:text-[#6556cd] ri-arrow-left-line"
-          ></i>
+          ></i>{" "}
           Trending
         </h1>
 
@@ -75,9 +76,9 @@ const Trending = () => {
       
 
     </div>
-  ): <>
-  <Loading/>
-    </>;
+  ): (
+    <Loading></Loading>
+  )
 };
 
 export default Trending;

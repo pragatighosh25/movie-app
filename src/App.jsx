@@ -4,6 +4,7 @@ import { Route, Routes } from 'react-router-dom'
 import Loading from './components/partials/Loading'
 import Trending from './components/Trending'
 import Popular from './components/Popular'
+import Movie from './components/Movie'
 
 function App() {
   
@@ -13,6 +14,7 @@ function App() {
       <Route path='/' element={<Home/>} ></Route>
       <Route path='/trending' element={<Trending/>} ></Route>
       <Route path='/popular' element={<Popular/>} ></Route>
+      <Route path='/movies' element={<Movie/>} ></Route>
     </Routes>
   </div>
 }
