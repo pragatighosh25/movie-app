@@ -6,6 +6,7 @@ import Trending from './components/Trending'
 import Popular from './components/Popular'
 import Movie from './components/Movie'
 import TVShows from "./components/TVShows"
+import People from './components/People'
 
 function App() {
   
@@ -17,6 +18,7 @@ function App() {
       <Route path='/popular' element={<Popular/>} ></Route>
       <Route path='/movies' element={<Movie/>} ></Route>
       <Route path='/TVShows' element={<TVShows/>} ></Route>
+      <Route path='/People' element={<People/>} ></Route>
     </Routes>
   </div>
 }

@@ -9,7 +9,7 @@ const Cards = ({ data, title }) => {
           <div className="w-full">
             <img
             src={`https://image.tmdb.org/t/p/original${
-              d.poster_path || d.backdrop_path
+              d.poster_path || d.backdrop_path || d.profile_path
             }`}
             alt=""
             className="h-[45vh] shadow-[8px_17px_38px_2px_rgba(0,0,0,0.5)] w-full"

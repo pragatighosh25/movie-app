@@ -7,21 +7,21 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import Cards from './partials/Cards';
 import Loading from './partials/Loading';
 
-const TVShows = () => {
+const People = () => {
 
   const navigate = useNavigate();
-  const [category, setCategory] = useState("airing_today");
-  const [tvshows, setTVShows] = useState([]);
+  const [category, setCategory] = useState("popular");
+  const [people, setPeople] = useState([]);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
-  document.title ="SCSDB | TV " + category.toUpperCase();
+  document.title ="SCSDB | " + category.toUpperCase() + " People";
 
-  const GetTVShows = async () => {
+  const GetPeople = async () => {
     try {
-      const { data } = await axios.get(`/tv/${category}?page=${page}`);
+      const { data } = await axios.get(`/person/${category}?page=${page}`);
 
       if(data.results.length > 0){
-      setTVShows((prevState) => [...prevState, ...data.results]);
+      setPeople((prevState) => [...prevState, ...data.results]);
       setPage(page+1);
       }else{
         setHasMore(false);
@@ -34,12 +34,12 @@ const TVShows = () => {
   };
 
   const refreshHandler =async() => {
-    if(tvshows.length===0){
-      GetTVShows();
+    if(people.length===0){
+      GetPeople();
     }else{
       setPage(1);
-      setTVShows([]);
-      GetTVShows();
+      setPeople([]);
+      GetPeople();
     }
   }
 
@@ -48,7 +48,7 @@ const TVShows = () => {
   }, [category])
 
 
-  return tvshows.length > 0 ? (
+  return people.length > 0 ? (
     <div className="w-screen h-screen bg-[#1f1e24]">
       <div className="w-full flex items-center justify-between px-[3%] ">
         <h1 className="text-2xl w-[20%] text-zinc-400 font-semibold">
@@ -56,25 +56,20 @@ const TVShows = () => {
             onClick={() => navigate(-1)}
             className="hover:text-[#6556cd] ri-arrow-left-line"
           ></i>{" "}
-          {category === "airing_today" && "TV Shows Airing Today"}
-          {category === "popular" && "Popular TV Shows"}
-          {category === "top_rated" && "Top Rated TV Shows"}
-          {category === "on_the_air" && "TV Shows on Air"}
+          People
         </h1>
 
         <div className="flex items-center w-[80%] ">
           <Topnav></Topnav>
-          <Dropdown title="Category" options={["popular", "on_the_air", "top_rated", "airing_today" ]} func={(e)=> setCategory(e.target.value)} />
-          <div className="w-[2%]"></div>
           
         </div>
       </div>
       <InfiniteScroll
-      dataLength={tvshows.length}
+      dataLength={people.length}
       loader={<h1>LOADING</h1>}
-      next={GetTVShows}
+      next={GetPeople}
       hasMore={hasMore}>
-        <Cards data={tvshows} title={category}></Cards>
+        <Cards data={people} title={category}></Cards>
       </InfiniteScroll>
       
 
@@ -83,4 +78,4 @@ const TVShows = () => {
     <Loading></Loading>)
 };
 
-export default TVShows;
+export default People;
