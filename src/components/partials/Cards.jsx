@@ -6,16 +6,19 @@ const Cards = ({ data, title }) => {
     <div className="min-w-screen flex flex-wrap px-[5%] bg-[#1f1e24] min-h-screen">
       {data.map((d, i) => (
         <Link key={i} className="w-[18%] mr-[2%] mb-[5%]">
-          <img
+          <div className="w-full">
+            <img
             src={`https://image.tmdb.org/t/p/original${
               d.poster_path || d.backdrop_path
             }`}
             alt=""
-            className="h-[40vh] shadow-[8px_17px_38px_2px_rgba(0,0,0,0.5)] "
+            className="h-[45vh] shadow-[8px_17px_38px_2px_rgba(0,0,0,0.5)] w-full"
           />
-          <h1 className="text-2xl text-zinc-300 mt-3 font-semibold">
+          <h1 className="text-2xl text-zinc-300 mt-3 font-semibold truncate">
             {d.original_title || d.title || d.original_name}
           </h1>
+          </div>
+
           
         </Link>
       ))}
