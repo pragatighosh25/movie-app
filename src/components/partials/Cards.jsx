@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 
 const Cards = ({ data, title }) => {
   return (
-    <div className="w-full flex flex-wrap">
+    <div className="min-w-screen flex flex-wrap px-[5%] bg-[#1f1e24] min-h-screen">
       {data.map((d, i) => (
-        <Link key={i} className="w-[25vh] mr-[5%] mb-[5%] ">
+        <Link key={i} className="w-[18%] mr-[2%] mb-[5%]">
           <img
             src={`https://image.tmdb.org/t/p/original${
               d.poster_path || d.backdrop_path

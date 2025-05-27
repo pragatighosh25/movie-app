@@ -3,6 +3,7 @@ import './App.css'
 import { Route, Routes } from 'react-router-dom'
 import Loading from './components/partials/Loading'
 import Trending from './components/Trending'
+import Popular from './components/Popular'
 
 function App() {
   
@@ -11,6 +12,7 @@ function App() {
     <Routes>
       <Route path='/' element={<Home/>} ></Route>
       <Route path='/trending' element={<Trending/>} ></Route>
+      <Route path='/popular' element={<Popular/>} ></Route>
     </Routes>
   </div>
 }
