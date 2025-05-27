@@ -10,7 +10,7 @@ const HorizontalCards = ({ data}) => {
         {data.map((d, i) => (
           <div key={i} className="min-w-[15%] mr-5 bg-zinc-900 mb-5 ">
             <img
-              className="w-full h-[45%] object-cover"
+              className="w-full h-[45%] "
               src={`https://image.tmdb.org/t/p/original${
                 d.backdrop_path || d.poster_path
               }`}
