@@ -54,7 +54,7 @@ const MovieDetails = () => {
       </nav>
 
       {/* poster & deets */}
-      
+
       <div className="w-full flex">
         <img
           src={`https://image.tmdb.org/t/p/original${
@@ -63,43 +63,67 @@ const MovieDetails = () => {
           alt=""
           className="h-[40vh] shadow-[8px_17px_38px_2px_rgba(0,0,0,0.5)]"
         />
+
+        <div className="content mr-10 text-zinc-">
+          <h1>
+            {info.detail.original_title ||
+              info.detail.title ||
+              info.detail.original_name}
+          </h1>
+        </div>
       </div>
-      <div>
-        <div className="mt-5">
-          {info.watchproviders &&
-            info.watchproviders.flatrate &&
-            info.watchproviders.flatrate.map((w) => (
-              <img
-                className="w-[7vh]  h-[7vh] rounded-md "
-                src={`https://image.tmdb.org/t/p/original${w.logo_path}`}
-                alt=""
-              ></img>
-            ))}
-        </div>
 
-        <div className="mt-5">
-          {info.watchproviders &&
-            info.watchproviders.rent &&
-            info.watchproviders.rent.map((w) => (
-              <img
-                className="w-[7vh]  h-[7vh] rounded-md "
-                src={`https://image.tmdb.org/t/p/original${w.logo_path}`}
-                alt=""
-              ></img>
-            ))}
-        </div>
+      {/* platforms available */}
 
-        <div className="mt-5">
-          {info.watchproviders &&
-            info.watchproviders.buy &&
-            info.watchproviders.buy.map((w) => (
+      <div className="w-[80%] flex flex-col gap-y-5 mt-10 ">
+        {info.watchproviders && info.watchproviders.flatrate && (
+          <div className="flex gap-x-10 items-center text-white">
+            <h1>Availale on Platforms</h1>
+            {info.watchproviders.flatrate.map((w, i) => (
               <img
+                key={i}
+                title={w.provider_name}
                 className="w-[7vh]  h-[7vh] rounded-md "
                 src={`https://image.tmdb.org/t/p/original${w.logo_path}`}
                 alt=""
               ></img>
             ))}
-        </div>
+          </div>
+        )}
+      </div>
+
+      <div className="w-[80%] flex flex-col gap-y-5 mt-10 ">
+        {info.watchproviders && info.watchproviders.rent && (
+          <div className="flex gap-x-10 items-center text-white">
+            <h1>Availale on Rent</h1>
+            {info.watchproviders.rent.map((w, i) => (
+              <img
+                key={i}
+                title={w.provider_name}
+                className="w-[7vh]  h-[7vh] rounded-md "
+                src={`https://image.tmdb.org/t/p/original${w.logo_path}`}
+                alt=""
+              ></img>
+            ))}
+          </div>
+        )}
+      </div>
+
+      <div className="w-[80%] flex flex-col gap-y-5 mt-10 ">
+        {info.watchproviders && info.watchproviders.buy && (
+          <div className="flex gap-x-10 items-center text-white">
+            <h1>Availale to Buy</h1>
+            {info.watchproviders.buy.map((w, i) => (
+              <img
+                key={i}
+                title={w.provider_name}
+                className="w-[7vh]  h-[7vh] rounded-md "
+                src={`https://image.tmdb.org/t/p/original${w.logo_path}`}
+                alt=""
+              ></img>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   ) : (
