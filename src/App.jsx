@@ -18,24 +18,21 @@ function App() {
         <Route path="/" element={<Home />}></Route>
         <Route path="/trending" element={<Trending />}></Route>
         <Route path="/popular" element={<Popular />}></Route>
-        <Route path="/movies" element={<Movie />}>
-          <Route
-            path="/movie/details/:id"
-            element={<MovieDetails></MovieDetails>}
-          ></Route>
-        </Route>
-        <Route path="/TVShows" element={<TVShows />}>
-          <Route
-            path="/tv/details/:id"
-            element={<TVShowDetails></TVShowDetails>}
-          ></Route>
-        </Route>
-        <Route path="/People" element={<People />}>
+        <Route path="/movie" element={<Movie />}></Route>
         <Route
-            path="/people/details/:id"
-            element={<PeopleDetails></PeopleDetails>}
-          ></Route>
-        </Route>
+          path="/movie/details/:id"
+          element={<MovieDetails></MovieDetails>}
+        ></Route>
+        <Route path="/tv" element={<TVShows />}></Route>
+        <Route
+          path="/tv/details/:id"
+          element={<TVShowDetails></TVShowDetails>}
+        ></Route>
+        <Route path="/people" element={<People />}></Route>
+        <Route
+          path="/people/details/:id"
+          element={<PeopleDetails></PeopleDetails>}
+        ></Route>
       </Routes>
     </div>
   );

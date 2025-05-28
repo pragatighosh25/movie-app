@@ -5,7 +5,7 @@ const Cards = ({ data, title }) => {
   return (
     <div className="min-w-screen flex flex-wrap px-[5%] bg-[#1f1e24] min-h-screen">
       {data.map((d, i) => (
-        <Link key={i} className="w-[18%] mr-[2%] mb-[5%]">
+        <Link to={`/${title || d.media_type }/details/${d.id}`} key={i} className="w-[18%] mr-[2%] mb-[5%]">
           <div className="w-full">
             <img
             src={`https://image.tmdb.org/t/p/original${

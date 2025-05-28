@@ -12,6 +12,8 @@ const Home = () => {
   const [wallpaper, setWallpaper] = useState(null);
   const [trending, setTrending] = useState([]);
   const [category, setCatergory] = useState("all");
+  const [popular, setPopular] = useState([]);
+  const [popularCategory, setPopularCatergory] = useState("movie");
 
   const GetHeaderWallpaper = async () => {
     try {
@@ -33,12 +35,22 @@ const Home = () => {
     }
   };
 
+    const GetPopular = async () => {
+    try {
+      const { data } = await axios.get(`${popularCategory}/popular`);
+      setPopular(data.results);
+    } catch (error) {
+      console.log("error: ", error);
+    }
+  };
+
   useEffect(() => {
     !wallpaper && GetHeaderWallpaper();
     GetTrending();
-  }, [category]);
+    GetPopular()
+  }, [category, popularCategory]);
 
-  return wallpaper && trending ? (
+  return wallpaper && trending && popular ? (
     <>
       <Sidenav></Sidenav>
       <div className="w-[80%] h-full overflow-x-hidden overflow-auto">
@@ -55,6 +67,19 @@ const Home = () => {
           ></Dropdown>
         </div>
         <HorizontalCards data={trending}></HorizontalCards>
+
+        
+        <div className="my-5 flex justify-between p-5">
+          <h1 className="text-3xl text-zinc-400  mb-5 font-semibold">
+            Popular
+          </h1>
+          <Dropdown
+            title="Filter"
+            options={["tv", "movie",]}
+            func={(e) => setPopularCatergory(e.target.value)}
+          ></Dropdown>
+        </div>
+        <HorizontalCards data={popular}></HorizontalCards>
       </div>
     </>
   ) : (
