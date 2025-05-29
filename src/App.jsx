@@ -10,6 +10,8 @@ import People from "./components/People";
 import MovieDetails from "./components/partials/MovieDetails";
 import TVShowDetails from "./components/partials/TVShowDetails";
 import PeopleDetails from "./components/partials/PeopleDetails";
+import Trailer from "./components/partials/Trailer";
+import Error from "./components/partials/Error";
 
 function App() {
   return (
@@ -22,17 +24,24 @@ function App() {
         <Route
           path="/movie/details/:id"
           element={<MovieDetails></MovieDetails>}
-        ></Route>
+        >
+
+          <Route path="/movie/details/:id/trailer" element={<Trailer/>}></Route>
+        </Route>
         <Route path="/tv" element={<TVShows />}></Route>
         <Route
           path="/tv/details/:id"
-          element={<TVShowDetails></TVShowDetails>}
-        ></Route>
+          element={<TVShowDetails/>}
+        >
+          <Route path="/tv/details/:id/trailer" element={<Trailer/>}></Route>
+        </Route>
         <Route path="/people" element={<People />}></Route>
         <Route
           path="/people/details/:id"
-          element={<PeopleDetails></PeopleDetails>}
+          element={<PeopleDetails/>}
         ></Route>
+        
+        <Route path="*" element={<Error />}></Route>
       </Routes>
     </div>
   );
