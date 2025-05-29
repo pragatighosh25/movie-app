@@ -5,6 +5,7 @@ import { Outlet, useLocation, useNavigate, useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Loading from "./Loading";
 import HorizontalCards from "./HorizontalCards";
+import noimage from "/no-image.jpg";
 
 const TVShowDetails = () => {
   const { pathname } = useLocation();
@@ -28,7 +29,7 @@ const TVShowDetails = () => {
         backgroundSize: "cover", // Ensures the image covers the entire div
         backgroundRepeat: "no-repeat",
       }}
-      className="w-screen relative h-[190vh] px-[10%] "
+      className="w-screen relative h-[200vh] px-[10%] "
     >
       {/* navigation */}
       <nav className="w-full flex text-zinc-100 gap-10 text-xl h-[10vh] items-center">
@@ -180,25 +181,23 @@ const TVShowDetails = () => {
         <>
           <hr className="mt-10 mb-5 border-none h-[2px] bg-zinc-500" />
           <h1 className="text-3xl font-bold  text-white">All Seasons</h1>
-          <div className="w-[100%] flex overflow-y-hidden mb-5 p-5">
+          <div className="w-full flex overflow-x-auto mb-5 p-5 gap-6">
             {info.detail.seasons.map((s, i) => (
-              <div className="flex flex-col">
+              <div className="min-w-[160px] overflow-hidden shadow-lg ">
                 <img
-                  className="w-full h-[45%] "
                   src={
-                    s.poster_path
-                      ? `https://image.tmdb.org/t/p/original/${s.poster_path}`
+                    s.poster_path || s.backdrop_path
+                      ? `https://image.tmdb.org/t/p/original${s.poster_path}`
                       : noimage
                   }
                   alt=""
+                  className="h-[200px] w-full "
                 />
-                <div className="text-white p-3 h-[45%] overflow-y-auto ">
-                  <h1 className="text-xl font-semibold ">
-                    {s.title || s.original_title || s.original_name || s.name}
+                <div className="text-white p-3 h-[100px] overflow-y-auto">
+                  <h1 className="text-xl font-semibold text-zinc-300">
+                    {s.name}
                   </h1>
-                  {s.episode_count && <h1>Episodes: {s.episode_count}</h1>}
-                  
-                  
+                  {s.episode_count && <h1 className=" mt-1 text-zinc-400">Episodes: {s.episode_count}</h1>}
                 </div>
               </div>
             ))}

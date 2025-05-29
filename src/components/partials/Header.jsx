@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Outlet, useLocation } from "react-router-dom";
 
 const Header = ({ data }) => {
   console.log(data);
@@ -21,7 +21,12 @@ const Header = ({ data }) => {
       {data.overview && (
         <p className="text-white w-[70%] mt-3 mb-3">
           {data.overview.slice(0, 200)}...{" "}
-          <Link to={`/${data.media_type}/details/${data.id}}`}                   className="text-blue-400">more</Link>
+          <Link
+            to={`/${data.media_type}/details/${data.id}}`}
+            className="text-blue-400"
+          >
+            more
+          </Link>
         </p>
       )}
       <p className="text-white">
@@ -40,7 +45,10 @@ const Header = ({ data }) => {
         )}
       </p>
 
-      <Link className="p-4 text-white rounded bg-[#6556cd] mt-5">Watch Trailer</Link>
+      <Link to={`${data.media_type}/details/${data.id}/trailer`} className="p-4 text-white rounded bg-[#6556cd] mt-5">
+        Watch Trailer
+      </Link>
+      
     </div>
   );
 };

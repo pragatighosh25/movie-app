@@ -17,7 +17,8 @@ function App() {
   return (
     <div className=" bg-[#1F1E24] w-screen h-screen flex">
       <Routes>
-        <Route path="/" element={<Home />}></Route>
+        <Route path="/" element={<Home />}>
+        </Route>
         <Route path="/trending" element={<Trending />}></Route>
         <Route path="/popular" element={<Popular />}></Route>
         <Route path="/movie" element={<Movie />}></Route>
@@ -25,22 +26,18 @@ function App() {
           path="/movie/details/:id"
           element={<MovieDetails></MovieDetails>}
         >
-
-          <Route path="/movie/details/:id/trailer" element={<Trailer/>}></Route>
+          <Route
+            path="/movie/details/:id/trailer"
+            element={<Trailer />}
+          ></Route>
         </Route>
         <Route path="/tv" element={<TVShows />}></Route>
-        <Route
-          path="/tv/details/:id"
-          element={<TVShowDetails/>}
-        >
-          <Route path="/tv/details/:id/trailer" element={<Trailer/>}></Route>
+        <Route path="/tv/details/:id" element={<TVShowDetails />}>
+          <Route path="/tv/details/:id/trailer" element={<Trailer />}></Route>
         </Route>
         <Route path="/people" element={<People />}></Route>
-        <Route
-          path="/people/details/:id"
-          element={<PeopleDetails/>}
-        ></Route>
-        
+        <Route path="/people/details/:id" element={<PeopleDetails />}></Route>
+
         <Route path="*" element={<Error />}></Route>
       </Routes>
     </div>
