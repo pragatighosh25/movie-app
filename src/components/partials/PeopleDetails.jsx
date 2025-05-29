@@ -82,42 +82,74 @@ const PeopleDetails = () => {
           </div>
 
           {/*personal info */}
-          <h1 className="text-2xl text-zinc-400 font-semibold my-5">Person Details</h1>
+          <h1 className="text-2xl text-zinc-400 font-semibold my-5">
+            Person Details
+          </h1>
           <h1 className="text-xl text-zinc-400 font-semibold">Known For</h1>
-          <h1 className=" text-zinc-400 ">{info.detail.known_for_department}</h1>
+          <h1 className=" text-zinc-400 ">
+            {info.detail.known_for_department}
+          </h1>
           <h1 className="text-xl text-zinc-400 font-semibold mt-3">Gender</h1>
-          <h1 className=" text-zinc-400 ">{info.detail.gender===2? "Male": "Female"}</h1>
+          <h1 className=" text-zinc-400 ">
+            {info.detail.gender === 2 ? "Male" : "Female"}
+          </h1>
           <h1 className="text-xl text-zinc-400 font-semibold mt-3">Birthday</h1>
           <h1 className=" text-zinc-400 ">{info.detail.birthday}</h1>
-          <h1 className="text-xl text-zinc-400 font-semibold mt-3">Place of Birth</h1>
+          <h1 className="text-xl text-zinc-400 font-semibold mt-3">
+            Place of Birth
+          </h1>
           <h1 className=" text-zinc-400 ">{info.detail.place_of_birth}</h1>
-          <h1 className="text-xl text-zinc-400 font-semibold mt-3">Also known as</h1>
-          <h1 className=" text-zinc-400 ">{info.detail.also_known_as.join(", ")}</h1>
+          <h1 className="text-xl text-zinc-400 font-semibold mt-3">
+            Also known as
+          </h1>
+          <h1 className=" text-zinc-400 ">
+            {info.detail.also_known_as.join(", ")}
+          </h1>
         </div>
 
         {/*detailed info */}
         <div className="w-[80%] ml-[5%] ">
-          <h1 className="text-6xl text-zinc-400 font-black my-5">{info.detail.name}</h1>
+          <h1 className="text-6xl text-zinc-400 font-black my-5">
+            {info.detail.name}
+          </h1>
           <h1 className="text-xl text-zinc-400 font-semibold">Biography</h1>
           <p className="mt-3 text-zinc-400">{info.detail.biography}</p>
-          <h1 className="text-lg mt-5 text-zinc-400 font-semibold">Casted in</h1>
-          <HorizontalCards data={info.combinedcredits.cast}/>
+          <h1 className="text-lg mt-5 text-zinc-400 font-semibold">
+            Casted in
+          </h1>
+          <HorizontalCards data={info.combinedcredits.cast} />
           <div className="w-full flex justify-between">
             <h1 className="text-xl mt-5 text-zinc-400 font-semibold">Acting</h1>
-            <Dropdown title="Category" options={["tv", "movie"]} func={(e)=> setCategory(e.target.value)}/>
+            <Dropdown
+              title="Category"
+              options={["tv", "movie"]}
+              func={(e) => setCategory(e.target.value)}
+            />
           </div>
           <div className="w-full h-[50vh] overflow-y-auto overflow-x-hidden mt-5 shadow-lg shadow-[rgba(255, 255, 255, 0.3)] border-2 border-zinc-700 list-disc text-zinc-400 p-5">
-            {info[category + "Credits"].cast.map((c,i)=>(
-              <li className="hover:text-white duration-300 cursor-pointer">
-              <Link to={`/${category}/details/${c.id}`}>
-              <p className="inline">{c.detail.original_title ||
-              c.detail.title ||
-              c.detail.original_name}</p>
-              <p className="block mt-2 ml-5 ">{c.character && `Character name: ${c.character}`}</p>
-              </Link>
-            </li>
-            ))}
-            
+            {info[category + "credits"]?.cast?.length > 0 ? (
+              info[category + "credits"].cast.map((c, i) => (
+                <li
+                  key={i}
+                  className="hover:text-white p-5 rounded hover:bg-[#19191d] duration-300 cursor-pointer"
+                >
+                  <Link to={`/${category}/details/${c.id}`}>
+                    <p className="inline">
+                      {c.original_title || c.name || c.original_name
+                       
+                        }
+                    </p>
+                    {c.character && (
+                      <p className="block mt-2 ml-5">
+                        Character name: {c.character}
+                      </p>
+                    )}
+                  </Link>
+                </li>
+              ))
+            ) : (
+              <p className="text-zinc-500 italic">No cast info available.</p>
+            )}
           </div>
         </div>
       </div>
