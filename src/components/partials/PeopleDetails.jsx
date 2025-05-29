@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   asyncloadpeople,
@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 import Loading from "./Loading";
 import HorizontalCards from "./HorizontalCards";
 import noimage from "/no-image.jpg";
+import Dropdown from "./Dropdown";
 
 const PeopleDetails = () => {
   const { pathname } = useLocation();
@@ -16,6 +17,7 @@ const PeopleDetails = () => {
   const { id } = useParams();
   const { info } = useSelector((state) => state.people);
   const dispatch = useDispatch();
+  const [category, setCategory] = useState("movie");
 
   useEffect(() => {
     dispatch(asyncloadpeople(id));
@@ -25,7 +27,7 @@ const PeopleDetails = () => {
   }, [id]);
 
   return info ? (
-    <div className="px-[15%] w-screen">
+    <div className="px-[10%] w-screen bg-[#1F1E24] h-[150vh] ">
       {/* navigation */}
       <nav className="w-full flex text-zinc-100 text-xl h-[10vh] items-center">
         <Link>
@@ -36,7 +38,7 @@ const PeopleDetails = () => {
         </Link>
       </nav>
 
-      <div className="w-full flex flex-col ">
+      <div className="w-full flex  ">
         {/*poster and details */}
         <div className="w-[20%] ">
           <img
@@ -46,7 +48,7 @@ const PeopleDetails = () => {
                 : noimage
             }
             alt=""
-            className="h-[45vh] shadow-[8px_17px_38px_2px_rgba(0,0,0,0.5)] w-full"
+            className="h-[35vh] shadow-[8px_17px_38px_2px_rgba(0,0,0,0.5)] w-full"
           />
 
           <hr className="mt-10 mb-5 border-none h-[2px] bg-zinc-500" />
@@ -80,7 +82,43 @@ const PeopleDetails = () => {
           </div>
 
           {/*personal info */}
-          <h1 className="">Person Details</h1>
+          <h1 className="text-2xl text-zinc-400 font-semibold my-5">Person Details</h1>
+          <h1 className="text-xl text-zinc-400 font-semibold">Known For</h1>
+          <h1 className=" text-zinc-400 ">{info.detail.known_for_department}</h1>
+          <h1 className="text-xl text-zinc-400 font-semibold mt-3">Gender</h1>
+          <h1 className=" text-zinc-400 ">{info.detail.gender===2? "Male": "Female"}</h1>
+          <h1 className="text-xl text-zinc-400 font-semibold mt-3">Birthday</h1>
+          <h1 className=" text-zinc-400 ">{info.detail.birthday}</h1>
+          <h1 className="text-xl text-zinc-400 font-semibold mt-3">Place of Birth</h1>
+          <h1 className=" text-zinc-400 ">{info.detail.place_of_birth}</h1>
+          <h1 className="text-xl text-zinc-400 font-semibold mt-3">Also known as</h1>
+          <h1 className=" text-zinc-400 ">{info.detail.also_known_as.join(", ")}</h1>
+        </div>
+
+        {/*detailed info */}
+        <div className="w-[80%] ml-[5%] ">
+          <h1 className="text-6xl text-zinc-400 font-black my-5">{info.detail.name}</h1>
+          <h1 className="text-xl text-zinc-400 font-semibold">Biography</h1>
+          <p className="mt-3 text-zinc-400">{info.detail.biography}</p>
+          <h1 className="text-lg mt-5 text-zinc-400 font-semibold">Casted in</h1>
+          <HorizontalCards data={info.combinedcredits.cast}/>
+          <div className="w-full flex justify-between">
+            <h1 className="text-xl mt-5 text-zinc-400 font-semibold">Acting</h1>
+            <Dropdown title="Category" options={["tv", "movie"]} func={(e)=> setCategory(e.target.value)}/>
+          </div>
+          <div className="w-full h-[50vh] overflow-y-auto overflow-x-hidden mt-5 shadow-lg shadow-[rgba(255, 255, 255, 0.3)] border-2 border-zinc-700 list-disc text-zinc-400 p-5">
+            {info[category + "Credits"].cast.map((c,i)=>(
+              <li className="hover:text-white duration-300 cursor-pointer">
+              <Link to={`/${category}/details/${c.id}`}>
+              <p className="inline">{c.detail.original_title ||
+              c.detail.title ||
+              c.detail.original_name}</p>
+              <p className="block mt-2 ml-5 ">{c.character && `Character name: ${c.character}`}</p>
+              </Link>
+            </li>
+            ))}
+            
+          </div>
         </div>
       </div>
     </div>
