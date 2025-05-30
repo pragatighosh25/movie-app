@@ -14,7 +14,7 @@ const Popular = () => {
   const [popular, setPopular] = useState([]);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
-  document.title ="SCSDB | Popular " + category.toUpperCase();
+  document.title ="TF | Popular " + category.toUpperCase();
 
   const GetPopular = async () => {
     try {

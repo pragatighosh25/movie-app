@@ -12,6 +12,8 @@ import TVShowDetails from "./components/partials/TVShowDetails";
 import PeopleDetails from "./components/partials/PeopleDetails";
 import Trailer from "./components/partials/Trailer";
 import Error from "./components/partials/Error";
+import AboutUs from "./components/AboutUs";
+import ContactUs from "./components/ContactUs";
 
 function App() {
   return (
@@ -20,6 +22,8 @@ function App() {
         <Route path="/" element={<Home />}>
         </Route>
         <Route path="/trending" element={<Trending />}></Route>
+        <Route path="/about" element={<AboutUs />} />
+        <Route path="/contact" element={<ContactUs />} />
         <Route path="/popular" element={<Popular />}></Route>
         <Route path="/movie" element={<Movie />}></Route>
         <Route

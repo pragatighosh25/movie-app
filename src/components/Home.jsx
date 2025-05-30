@@ -8,7 +8,7 @@ import Dropdown from "./partials/Dropdown";
 import Loading from "./partials/Loading";
 
 const Home = () => {
-  document.title ="SCSDB | Home"
+  document.title ="TF | Home"
   const [wallpaper, setWallpaper] = useState(null);
   const [trending, setTrending] = useState([]);
   const [category, setCatergory] = useState("all");

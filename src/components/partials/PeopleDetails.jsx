@@ -27,7 +27,7 @@ const PeopleDetails = () => {
   }, [id]);
 
   return info ? (
-    <div className="px-[10%] w-screen bg-[#1F1E24] h-[150vh] ">
+    <div className="px-[10%] w-screen bg-[#1F1E24] h-[170vh] ">
       {/* navigation */}
       <nav className="w-full flex text-zinc-100 text-xl h-[10vh] items-center">
         <Link>

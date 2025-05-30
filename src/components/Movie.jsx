@@ -14,7 +14,7 @@ const Movie = () => {
   const [movie, setMovie] = useState([]);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
-  document.title ="SCSDB | Movie " + category.toUpperCase();
+  document.title ="TF | Movie " + category.toUpperCase();
 
   const GetMovie = async () => {
     try {

@@ -5,8 +5,8 @@ const Sidenav = () => {
   return (
     <div className="w-[20%] h-full border-r-2 border-zinc-400 p-10">
       <h1 className="text-2xl text-white font-bold">
-        <i className="ri-tv-fill text-[#6556CD] mr-2"></i>
-        <span className="">SCSDB.</span>
+        <i class="ri-film-line text-[#6556CD] mr-2"></i>
+        <span className="">The Flims</span>
       </h1>
       <nav className="flex flex-col text-zinc-400 text-xl gap-3">
         <h1 className="text-white font-semibold text-xl mt-10 mb-5">
@@ -43,10 +43,10 @@ const Sidenav = () => {
         <h1 className="text-white font-semibold text-xl mt-10 mb-5">
           Website Information
         </h1>
-        <Link className="hover:bg-[#6556CD] p-5 hover:text-white rounded-lg duration-300">
+        <Link to="/about" className="hover:bg-[#6556CD] p-5 hover:text-white rounded-lg duration-300">
           <i className="mr-2 ri-information-2-fill"></i> About SCSDB
         </Link>
-        <Link className="hover:bg-[#6556CD] p-5 hover:text-white rounded-lg duration-300">
+        <Link to="/contact" className="hover:bg-[#6556CD] p-5 hover:text-white rounded-lg duration-300">
           <i className="mr-2 ri-phone-fill"></i>Contact Us
         </Link>
       </nav>

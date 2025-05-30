@@ -14,7 +14,7 @@ const TVShows = () => {
   const [tvshows, setTVShows] = useState([]);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
-  document.title ="SCSDB | TV " + category.toUpperCase();
+  document.title ="TF | TV " + category.toUpperCase();
 
   const GetTVShows = async () => {
     try {

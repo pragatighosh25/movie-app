@@ -14,7 +14,7 @@ const Trending = () => {
   const [trending, setTrending] = useState([]);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
-  document.title ="SCSDB | Trending " + category.toUpperCase();
+  document.title ="TF | Trending " + category.toUpperCase();
 
   const GetTrending = async () => {
     try {

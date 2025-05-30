@@ -14,7 +14,7 @@ const People = () => {
   const [people, setPeople] = useState([]);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
-  document.title ="SCSDB | " + category.toUpperCase() + " People";
+  document.title ="TF | " + category.toUpperCase() + " People";
 
   const GetPeople = async () => {
     try {
